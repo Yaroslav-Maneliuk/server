@@ -3,7 +3,10 @@ const { User } = require("../models");
 
 module.exports.createUser = async (req, res, next) => {
   try {
-    const { body } = req;
+    const { body, file } = req;
+    if (file) {
+      body.imgPath = file.filename;
+    }
     const user = await User.create(body);
     if (!user) {
       next(createError(400, "Try again!"));

@@ -1,14 +1,13 @@
 const { Router } = require("express");
 const router = Router();
-// const multer  = require('multer')
-// const upload = multer({ dest: "public/images" });
+const uploadImage = require("../middlewares/uploadImage.mw")
 const UserController = require("../controllers/user.controller");
 const TaskController = require("../controllers/task.controller");
 
 router
-  .route('/users')
-  .post(UserController.createUser)  //будет с картинкой по умолчанию
-//   .post(upload.single('image'), UserController.createUserWithImage)
+.route("/users")
+.post(uploadImage, UserController.createUser); 
+// .post(upload.single('image'), UserController.createUserWithImage)
 //   .get(UserController.getAllUsers)
 
 // router
